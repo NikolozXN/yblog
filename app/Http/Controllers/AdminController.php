@@ -6,11 +6,13 @@ use App\Models\Comment;
 use App\Models\Feedback;
 use App\Models\Post;
 use App\Models\User;
+use Illuminate\Support\Facades\Gate;
 
 class AdminController extends Controller
 {
     public function index()
     {
+
         $allUsers = User::withCount('posts', 'comments')->get();
         $allPosts = Post::all();
         $allFeedbacks = Feedback::all();

@@ -8,8 +8,7 @@
         <span class="text-sm">Last updated {{ $post->updated_at->diffForHumans() }}</span>
     </div>
     <a href="{{ route('posts.show', $post->slug) }}"
-        class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><a href="#">{{ $post->title }}
-        </a>
+        class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ $post->title }}
     </a>
     <p class="mb-5 font-light text-gray-500 dark:text-gray-400">{{ $post->excerpt }}</p>
     <div class="flex justify-between items-center">

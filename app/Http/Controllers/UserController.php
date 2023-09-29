@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\LoginUserRequest;
 use App\Http\Requests\StoreUserRequest;
@@ -21,9 +22,13 @@ class UserController extends Controller
     //store and login new user
     public function store(StoreUserRequest $request)
     {
+
+
         //validate incoming request
         $validated = $request->validated();
-
+        if (Gate::allows('admin')) {
+            return redirect('/admin')->with('message', 'Registered as admin');
+        }
         //check if request has file, in this case store image in public directory, avatars folder
         if ($request->hasFile('avatar')) {
             $validated['avatar'] = $request->file('avatar')->store('avatars', 'public');
@@ -52,7 +57,7 @@ class UserController extends Controller
         $validated = $request->validated();
 
         //check if user entered correct info of his/her account. 
-        if (Auth::attempt($validated, true)) {
+        if (Auth::attempt($validated)) {
 
             // if it's true redirect with success message
             session()->regenerateToken();

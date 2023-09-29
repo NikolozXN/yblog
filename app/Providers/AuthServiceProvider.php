@@ -28,10 +28,10 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Gate::define('post-author', fn (User $user, Post $post) => Auth::id() === $post->user_id);
+        Gate::define('post-author', fn (User $user, Post $post) => $user->id === $post->user_id);
 
-        Gate::define('comment-author', fn (User $user, Comment $comment) => Auth::id() === $comment->user_id);
+        Gate::define('comment-author', fn (User $user, Comment $comment) => $user->id === $comment->user_id || $user->id === $comment->post->user_id);
 
-        Gate::define('feedback-author', fn (User $user, Feedback $feedback) => Auth::id() === $feedback->user_id);
+        Gate::define('feedback-author', fn (User $user, Feedback $feedback) => $user->id === $feedback->user_id);
     }
 }

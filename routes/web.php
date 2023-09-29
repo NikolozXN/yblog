@@ -79,6 +79,3 @@ Route::get('/about', function () {
 
 
 //admin
-
-Route::get('admin', [AdminController::class, 'index'])->name('admin.index');
-Route::delete('admin/user/{id}', [AdminController::class, 'destroy'])->name('admin.user');

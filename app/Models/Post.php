@@ -51,6 +51,11 @@ class Post extends Model
                         fn ($query) =>
                         $query->where('slug', $search)
                     )
+                    ->orWhereHas(
+                        'author',
+                        fn ($query) =>
+                        $query->where('username', $search)
+                    )
             )
         );
 

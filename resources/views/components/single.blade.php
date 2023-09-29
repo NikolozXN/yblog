@@ -3,7 +3,9 @@
     <address class="flex items-center mb-6 not-italic">
         <div class="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
 
-            <img class="mr-4 w-16 h-16 rounded-full" src="{{ '/storage/' . $post->author->avatar }}" alt="Jese Leos">
+            <img class="mr-4 w-16 h-16 rounded-full"
+                src="{{ $post->author->avatar ? '/storage/' . $post->author->avatar : '/storage/markup/profile-icon-png-898.png' }}"
+                alt="Jese Leos">
             <div>
                 <a href="#" rel="author"
                     class="text-xl font-bold text-gray-900 dark:text-white">{{ $post->author->username }}</a>
@@ -18,13 +20,7 @@
         {{ $post->title }}</h1>
 </header>
 <figure>
-    <img class="sm:max-w-xs" src="{{ '/storage/' . $post->image }}" alt="">
+    <img class="sm:max-w-xs" src="{{ $post->image ? asset('/storage/' . $post->image) : '' }}" alt="">
 </figure>
 <p class="text-md mb-4">{{ $post->body }}
 </p>
-
-<form action="{{ route('posts.delete', $post->slug) }}" method="POST">
-    @csrf
-    @method('delete')
-    <button class="text-red-500">Delete</button>
-</form>

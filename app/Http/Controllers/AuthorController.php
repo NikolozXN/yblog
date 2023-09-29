@@ -90,7 +90,7 @@ class AuthorController extends Controller
                 'posts' => $posts
             ]);
         } else {
-            return redirect('/')->with('message', 'You dont have posts');
+            return back()->with('message', 'You dont have posts');
         }
     }
 }

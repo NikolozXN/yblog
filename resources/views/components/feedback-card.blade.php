@@ -2,9 +2,9 @@
 <!-- component -->
 <div class="w-full mx-auto rounded-lg bg-white border border-gray-200 p-5 text-gray-800 font-light ">
     <div class="w-full flex mb-4 items-center">
-        <div>
-            <img class="rounded-full w-10 h-10"
-                src="{{ $feedback->author->avatar ? '/storage/' . $feedback->author->avatar : 'storage/markup/profile-icon-png-898.png' }}"
+        <div class="overflow-hidden">
+            <img class="rounded-full w-12 h-12 object-cover"
+                src="{{ $feedback->author->avatar ? asset('/storage/' . $feedback->author->avatar) : asset('storage/markup/profile-icon-png-898.png') }}"
                 alt="">
         </div>
         <div class="flex-grow pl-3">
