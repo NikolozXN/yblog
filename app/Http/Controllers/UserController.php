@@ -56,9 +56,12 @@ class UserController extends Controller
         //validate incoming request
         $validated = $request->validated();
 
+
         //check if user entered correct info of his/her account. 
         if (Auth::attempt($validated)) {
-
+            if (Gate::allows('admin')) {
+                return redirect('/admin');
+            };
             // if it's true redirect with success message
             session()->regenerateToken();
             return redirect('/')->with('message', 'You Are Logged In');

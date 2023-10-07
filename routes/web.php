@@ -79,3 +79,10 @@ Route::get('/about', function () {
 
 
 //admin
+Route::get('/admin', [AdminController::class, 'index'])->name('admin.user')->middleware('auth');
+
+Route::get('/admin/posts', [AdminController::class, 'showPosts'])->name('admin.posts')->middleware('auth');
+
+Route::delete('/admin/{user}', [AdminController::class, 'destroy'])->name('admin.deleteUser')->middleware('auth');
+
+Route::get('/admin/feedbacks', [AdminController::class, 'showFeedbacks'])->name('admin.feedbacks')->middleware('auth');

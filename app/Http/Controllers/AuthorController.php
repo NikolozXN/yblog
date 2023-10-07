@@ -75,10 +75,13 @@ class AuthorController extends Controller
      */
     public function destroy(Post $post)
     {
-        if (!Gate::allows('post-author', $post)) {
+
+        if (Gate::denies('post-author', $post) && !Gate::authorize('admin')) {
             abort(403, 'Unauthorized');
         }
+
         $post->delete();
+
         return redirect('/')->with('message', 'Post Deleted Successfully');
     }
 

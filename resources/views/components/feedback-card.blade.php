@@ -10,7 +10,7 @@
         <div class="flex-grow pl-3">
             <h6 class="font-bold text-sm uppercase text-gray-600">{{ $feedback->author->username }}</h6>
         </div>
-        @can('feedback-author', $feedback)
+        @can('admin')
             <form action="{{ route('feedback.delete', $feedback->id) }}" method="Post">
                 @csrf
                 @method('delete')

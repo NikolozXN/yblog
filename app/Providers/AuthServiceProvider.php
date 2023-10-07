@@ -8,7 +8,6 @@ use App\Models\Post;
 use App\Models\User;
 use App\Models\Comment;
 use App\Models\Feedback;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
@@ -32,6 +31,6 @@ class AuthServiceProvider extends ServiceProvider
 
         Gate::define('comment-author', fn (User $user, Comment $comment) => $user->id === $comment->user_id || $user->id === $comment->post->user_id);
 
-        Gate::define('feedback-author', fn (User $user, Feedback $feedback) => $user->id === $feedback->user_id);
+        Gate::define('admin', fn (User $user) => $user->is_admin === 1);
     }
 }

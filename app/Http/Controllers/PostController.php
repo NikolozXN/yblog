@@ -19,6 +19,7 @@ class PostController extends Controller
             ->filter(request(['category', 'search', 'author']))
             ->paginate(6)
             ->withQueryString();
+
         $feedbacks = Feedback::with('author')->get();
         return view(
             'posts.index',

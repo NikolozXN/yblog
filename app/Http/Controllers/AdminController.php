@@ -12,17 +12,43 @@ class AdminController extends Controller
 {
     public function index()
     {
+        //allow access for only admin
+        Gate::authorize('admin');
 
-        $allUsers = User::withCount('posts', 'comments')->get();
-        $allPosts = Post::all();
-        $allFeedbacks = Feedback::all();
-        $allComments = Comment::all();
-
-        return view('admin.index', ['allUsers' => $allUsers, 'allPosts' => $allPosts, 'allFeedbacks' => $allFeedbacks, 'allComments' => $allComments]);
+        return view('admin.index', [
+            'allUsers' => User::withCount('posts', 'comments')->where('is_admin', '!===', 1)->get(),
+            'allPosts' => Post::with('category', 'author')->get(),
+            'allFeedbacks' => Feedback::with('author')->get(),
+            'allComments' => Comment::with('author')->get()
+        ]);
     }
 
+    public function showPosts()
+    {
+        //allow access for only admin
+        Gate::authorize('admin');
+
+        $posts = Post::with('category', 'author')
+            ->filter(request(['category', 'search', 'author']))
+            ->paginate(6)
+            ->withQueryString();
+
+        return view('admin.posts', ['posts' => $posts]);
+    }
+
+    public function showFeedbacks()
+    {
+        Gate::authorize('admin');
+
+        $feedbacks = Feedback::with('author')->get();
+
+        return view('admin.feedbacks', [
+            'feedbacks' => $feedbacks
+        ]);
+    }
     public function destroy(User $user)
     {
+        Gate::authorize('admin');
 
         $user->delete();
 
