@@ -8,7 +8,7 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     @vite('resources/css/app.css')
-    <title>Document</title>
+    <title>Yblog</title>
 </head>
 
 <body>
@@ -25,8 +25,6 @@
                         <a href="{{ route('users.register') }}"
                             class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Get
                             started</a>
-                    @else
-                        <p class="text-md lg:text-lg">Welcome {{ auth()->user()->username }}</p>
                     @endguest
 
                     <button data-collapse-toggle="mobile-menu-2" type="button"
