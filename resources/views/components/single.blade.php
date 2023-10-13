@@ -2,7 +2,6 @@
 <header class="mb-4 lg:mb-6 not-format">
     <address class="flex items-center mb-6 not-italic">
         <div class="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
-
             <img class="mr-4 w-16 h-16 rounded-full"
                 src="{{ $post->author->avatar ? '/storage/' . $post->author->avatar : '/storage/markup/profile-icon-png-898.png' }}"
                 alt="Jese Leos">

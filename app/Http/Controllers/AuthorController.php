@@ -82,7 +82,7 @@ class AuthorController extends Controller
 
         $post->delete();
 
-        return redirect('/')->with('message', 'Post Deleted Successfully');
+        return back()->with('message', 'Post Deleted Successfully');
     }
 
     public function manage()

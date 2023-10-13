@@ -17,7 +17,7 @@ class AdminController extends Controller
 
         return view('admin.index', [
             'allUsers' => User::withCount('posts', 'comments')->where('is_admin', '!===', 1)->get(),
-            'allPosts' => Post::with('category', 'author')->get(),
+            'allPosts' => Post::all(),
             'allFeedbacks' => Feedback::with('author')->get(),
             'allComments' => Comment::with('author')->get()
         ]);
@@ -28,8 +28,7 @@ class AdminController extends Controller
         //allow access for only admin
         Gate::authorize('admin');
 
-        $posts = Post::with('category', 'author')
-            ->filter(request(['category', 'search', 'author']))
+        $posts = Post::filter(request(['category', 'search', 'author']))
             ->paginate(6)
             ->withQueryString();
 

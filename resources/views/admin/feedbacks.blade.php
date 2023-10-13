@@ -1,4 +1,5 @@
 <x-admin-layout>
+    <x-success-message />
     <x-feedback-layout>
         @forelse ($feedbacks as $feedback)
             <x-feedback-card :feedback="$feedback" />

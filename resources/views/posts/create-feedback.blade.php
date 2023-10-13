@@ -2,7 +2,8 @@
     <form action="{{ route('feedback.store') }}" method="POST">
         @csrf
         <div class="mx-auto max-w-2xl">
-            <div class="mb-6">
+            <x-success-message />
+            <div class="my-6">
                 <x-label for="body" text="Enter Your Feedback" />
                 <x-textarea id="body" placeholder="This Webiste is very good for people who..." name="body"
                     rows="12" value="{{ old('body') }}" />

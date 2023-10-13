@@ -17,6 +17,9 @@ class FeedbackController extends Controller
 
     public function store(StoreFeedbackRequest $request)
     {
+        if (auth()->user()->feedback) {
+            return back()->with('message', 'You have feedback already');
+        }
         $validatedFeedback = $request->validated();
         $validatedFeedback['user_id'] = Auth::user()->id;
         Feedback::create($validatedFeedback);
@@ -26,10 +29,10 @@ class FeedbackController extends Controller
     public function destroy(Feedback $feedback)
     {
 
-        if (!Gate::allows('feedback-author', $feedback)) {
+        if (!Gate::allows('admin', $feedback)) {
             abort(403, 'Unauthorized');
         }
         $feedback->delete();
-        return redirect('/')->with('message', 'Your Feedback Deleted');
+        return back()->with('message', 'Feedback Deleted');
     }
 }

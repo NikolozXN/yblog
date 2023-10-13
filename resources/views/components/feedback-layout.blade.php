@@ -1,6 +1,6 @@
 <section class="bg-white dark:bg-gray-900 mb-5">
-    <div class="min-w-screen min-h-screen bg-gray-50 flex items-center justify-center">
-        <div class="w-full bg-white border-t border-b border-gray-200 px-5 py-16 md:py-24 text-gray-800">
+    <div class="min-w-screen bg-white flex items-center justify-center">
+        <div class="w-full bg-white border-t border-b border-gray-200 px-5 py-8 text-gray-800">
             <div class="w-full max-w-6xl mx-auto">
                 <div class="text-center max-w-xl mx-auto">
                     <h1 class="text-4xl font-bold mb-5 text-gray-600">What people are saying.</h1>
