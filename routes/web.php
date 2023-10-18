@@ -79,13 +79,21 @@ Route::get('/about', function () {
 
 
 //admin
-Route::middleware(['auth', 'can:admin'])->group(function () {
 
-    Route::get('/admin', [AdminController::class, 'index'])->name('admin.user');
 
-    Route::get('/admin/posts', [AdminController::class, 'showPosts'])->name('admin.posts');
+Route::prefix('admin')->name('admin.')->controller(AdminController::class)->middleware(['auth', 'can:admin'])->group(function () {
 
-    Route::delete('/admin/{user}', [AdminController::class, 'destroy'])->name('admin.deleteUser');
+    Route::get('', 'index')->name('user');
 
-    Route::get('/admin/feedbacks', [AdminController::class, 'showFeedbacks'])->name('admin.feedbacks');
+    Route::get('/posts', 'showPosts')->name('posts');
+
+    Route::get('/feedbacks', 'showFeedbacks')->name('feedbacks');
+
+    Route::get('/categories', 'manageCategory')->name('categories.manage');
+
+    Route::post('/categories/store', 'createCategory')->name('categories.store');
+
+    Route::delete('/categories/{category:slug}', 'deleteCategory')->name('categories.delete');
+
+    Route::delete('/delete/{user}', 'destroy')->name('deleteUser');
 });

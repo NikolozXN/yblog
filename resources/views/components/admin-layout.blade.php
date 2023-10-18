@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <title>Admin</title>
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" />
 </head>
@@ -29,7 +30,7 @@
                 <ul class="space-y-2 font-medium">
                     <li
                         class="flex items-center justify-between hover:bg-white hover:text-indigo-600 dark:text-white rounded-lg dark:hover:bg-gray-700">
-                        <a href="#"
+                        <a href="{{ route('admin.user') }}"
                             class="flex items-center p-2 text-white rounded-lg dark:text-white hover:bg-white transition ease-in-out delay-50 hover:text-indigo-600 dark:hover:bg-gray-700 group">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                 stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -51,7 +52,7 @@
                         </button>
                     </li>
                     <li>
-                        <a href="#"
+                        <a href="{{ route('admin.user') }}"
                             class="flex items-center p-2 text-white rounded-lg dark:text-white hover:bg-white transition ease-in-out delay-50 hover:text-indigo-600 dark:hover:bg-gray-700 group">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                 stroke-width="1.5" stroke="currentColor" class="w-6 h-6">

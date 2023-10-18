@@ -7,9 +7,13 @@
                 src="{{ $user->avatar ? asset('/storage/' . $user->avatar) : asset('/storage/markup/profile-icon-png-898.png') }}"
                 alt="">
         </div>
-        <div class="pl-3">
+        <div class="pl-3 flex flex-col gap-1">
             <div class="text-base font-semibold">{{ $user->username }}</div>
             <div class="font-normal text-gray-500">{{ $user->email }}</div>
+            @if ($user->deleted_at)
+                <span
+                    class="bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-red-400 border border-red-400">Blocked</span>
+            @endif
         </div>
     </th>
 

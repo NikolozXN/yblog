@@ -51,17 +51,21 @@ class UserController extends Controller
     }
 
     //login returned user
-    public function login(LoginUserRequest $request)
+    public function login(LoginUserRequest $request, User $user)
     {
         //validate incoming request
         $validated = $request->validated();
 
-
         //check if user entered correct info of his/her account. 
         if (Auth::attempt($validated)) {
             if (Gate::allows('admin')) {
-                return redirect('/admin');
+                return redirect('/admin')->with('message', 'Logged in as an Admin');
             };
+
+            if (auth()->user()->deleted_at) {
+                auth()->logout();
+                return back()->with('message', 'you are blocked');
+            }
             // if it's true redirect with success message
             session()->regenerateToken();
             return redirect('/')->with('message', 'You Are Logged In');

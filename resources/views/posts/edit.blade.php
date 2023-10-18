@@ -24,9 +24,11 @@
                 <select id="categories" name="category_id"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                     @forelse ($categories as $category)
-                        <option value="{{ $category->id }}" {{ $category }}>{{ $category->name }}</option>
+                        <option value="{{ $category->id }}"
+                            {{ old('category_id', $post->category_id) == $category->id ? 'selected' : '' }}>
+                            {{ $category->name }}
+                        </option>
                     @empty
-                        <p class="text-red-500">No Categories!</p>
                     @endforelse
                 </select>
                 @error('category_id')
@@ -45,8 +47,9 @@
                             hover:file:bg-blue-600
                           "
                         onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])" />
-                    <div class="max-w-xs mb-3">
-                        <img id="output" src="{{ '/storage/' . $post->image }}">
+                    <div class="w-14 mb-3">
+                        <img id="output"
+                            src="{{ $post->image ? asset('/storage/' . $post->image) : asset('/storage/markup/Mediamodifier-Design-Template.png') }}">
                     </div>
                 </div>
 
