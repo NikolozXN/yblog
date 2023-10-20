@@ -1,6 +1,5 @@
 <x-layout>
     <div class="max-w-3xl mx-auto grid p-4 gap-4 mb-24 mt-12">
-
         @forelse ($posts as $post)
             <x-author-posts :post="$post" />
         @empty

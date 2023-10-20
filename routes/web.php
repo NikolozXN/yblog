@@ -19,6 +19,7 @@ use App\Http\Controllers\FeedbackController;
 |
 */
 
+Route::get('/', [PostController::class, 'index'])->name('posts.index');
 
 Route::prefix('posts')->name('posts.')->middleware('auth')->controller(AuthorController::class)->group(function () {
 
@@ -34,8 +35,6 @@ Route::prefix('posts')->name('posts.')->middleware('auth')->controller(AuthorCon
 
     Route::get('manage', 'manage')->name('manage');
 });
-
-Route::get('/', [PostController::class, 'index'])->name('posts.index');
 
 Route::get('/posts/{post:slug}', [PostController::class, 'show'])->name('posts.show');
 
@@ -66,11 +65,6 @@ Route::middleware('guest')->name('users.')->controller(UserController::class)->g
 
     Route::post('login', 'login')->name('login');
 });
-
-
-
-
-
 
 //about
 Route::get('/about', function () {

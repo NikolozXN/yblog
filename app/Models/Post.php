@@ -2,13 +2,20 @@
 
 namespace App\Models;
 
+use App\Models\Category;
+use CyrildeWit\EloquentViewable\InteractsWithViews;
+use Illuminate\Foundation\Auth\User;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
+use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Post extends Model
+
+class Post extends Model implements Viewable
 {
     use HasFactory;
+
+    use InteractsWithViews;
 
     use Sluggable;
 

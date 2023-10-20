@@ -1,7 +1,7 @@
 @props(['post'])
 <article class="p-6 bg-white mb-0 rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
     <div class="flex justify-between items-center mb-5 text-gray-500">
-        <a href="?category={{ $post->category->slug }}"
+        <a href="?category={{ $post->category->slug }}&{{ http_build_query(request()->except('category', 'page')) }}"
             class="bg-blue-100 text-blue-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800">
             {{ $post->category->name }}
         </a>
@@ -16,7 +16,7 @@
                     </svg>Delete Post</button>
             </form>
         @endcan
-
+        <span class="text-sm">{{ views($post)->count() }} Views</span>
         <span class="text-sm">Last updated {{ $post->updated_at->diffForHumans() }}</span>
     </div>
     <a href="{{ route('posts.show', $post->slug) }}"
@@ -28,7 +28,8 @@
             <img class="w-9 h-9 rounded-full"
                 src="{{ $post->author->avatar ? asset('/storage/' . $post->author->avatar) : asset('/storage/markup/profile-icon-png-898.png') }}"
                 alt="Jese Leos avatar" />
-            <a href="/?author={{ $post->author->username }}" class="font-medium dark:text-white">
+            <a href="/?author={{ $post->author->username }}&{{ http_build_query(request()->except('author', 'page')) }}"
+                class="font-medium dark:text-white">
                 {{ $post->author->username }}
             </a>
         </div>

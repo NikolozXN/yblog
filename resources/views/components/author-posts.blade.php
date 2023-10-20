@@ -5,6 +5,7 @@
             class="bg-blue-100 text-blue-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800">
             {{ $post->category->name }}
         </a>
+        <span class="text-sm">{{ views($post)->count() }} Views</span>
         <span class="text-sm">Last updated {{ $post->updated_at->diffForHumans() }}</span>
     </div>
     <a href="{{ route('posts.show', $post->slug) }}"

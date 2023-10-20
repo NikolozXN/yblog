@@ -5,14 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\Category;
 use App\Models\Feedback;
-use Illuminate\View\View;
 
 class PostController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(): View
+    public function index()
     {
         $posts = Post::latest()
             ->filter(request(['category', 'search', 'author']))
@@ -34,6 +33,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
+        views($post)->cooldown(now()->addHours(24))->record();
         return view(
             'posts.show',
             [
